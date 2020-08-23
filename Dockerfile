@@ -1,11 +1,11 @@
-FROM node:8-alpine as builder
+FROM node:10-alpine as builder
 ARG environment_profile=dist
 RUN apk update && apk add --no-cache git ca-certificates tzdata openssh make
 
 WORKDIR /app
 COPY . .
 RUN cp .env.${environment_profile} .env
-RUN npm install && npm run build
+RUN npm install && npm rebuild node-sass && npm run build
 
 FROM nginx:alpine
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
