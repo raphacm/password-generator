@@ -1,0 +1,28 @@
+@import "../../../../styles/utilities";
+
+.btn {
+  height: rem(48);
+  width: 100%;
+  border-radius: 24px;
+  border: none;
+  font-family: Gilroy;
+  font-size: rem(18);
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: rem(24);
+  text-align: center;
+  margin-bottom: rem(21.8);
+
+  &--primary {
+    background-color: #bc03dd;
+    color: #ffffff;
+  }
+
+  &--disabled {
+    background-color: #b7c2f8;
+  }
+
+  &:hover {
+    background-color: #9500ae;
+  }
+}
