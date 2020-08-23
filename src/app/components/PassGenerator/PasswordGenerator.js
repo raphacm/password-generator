@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { passwordOptions, patterns } from "../../../enums/passwordOptions";
+import FormGroup from "../core/FormGroup";
 import { reverseSelectedRules } from "../../../utils";
+import Button from "../core/Button";
 
 const PasswordGenerator = () => {
   const [password, setPassword] = useState("");
-  const [passwordSize, setPasswordSize] = useState(0);
+  const [passwordSize, setPasswordSize] = useState("10");
   const [passwordRules, setRules] = useState({
     UPPERCASE: "",
     LOWERCASE: "",
@@ -45,58 +47,62 @@ const PasswordGenerator = () => {
 
   return (
     <form className="form__group">
-      <input id="passwordField" type="text" value={password} readOnly />
+      <FormGroup
+        type="readOnly"
+        id="passwordField"
+        name="passwordField"
+        value={password}
+        label="Password"
+        readOnly
+      />
 
-      <label htmlFor="sizeField">Tamanho</label>
-      <input
-        id="sizeField"
+      <FormGroup
         type="number"
+        id="sizeField"
+        name="sizeField"
+        value={passwordSize}
+        label="Size"
         step="1"
         max="64"
         onChange={handlePasswordSize}
       />
 
-      <label htmlFor="uppercaseField">Maiúscula</label>
-      <input
+      <FormGroup
         type="checkbox"
-        id="uppercaseField"
-        className="form__checkbox"
-        name={passwordOptions.UPPERCASE}
-        defaultChecked={false}
-        onClick={handleSelectRules}
+        label="Choose a password weigth"
+        options={[
+          {
+            id: "uppercaseField",
+            name: passwordOptions.UPPERCASE,
+            checked: false,
+            onClick: handleSelectRules,
+          },
+          {
+            id: "lowercaseField",
+            name: passwordOptions.LOWERCASE,
+            checked: false,
+            onClick: handleSelectRules,
+          },
+          {
+            id: "numbersField",
+            name: passwordOptions.NUMBERS,
+            checked: false,
+            onClick: handleSelectRules,
+          },
+          {
+            id: "symbolsField",
+            name: passwordOptions.SYMBOLS,
+            checked: false,
+            onClick: handleSelectRules,
+          },
+        ]}
       />
 
-      <label htmlFor="lowercaseField">Minuscula</label>
-      <input
-        type="checkbox"
-        id="lowercaseField"
-        className="form__checkbox"
-        name={passwordOptions.LOWERCASE}
-        defaultChecked={false}
-        onClick={handleSelectRules}
+      <Button
+        type="primary"
+        label="Generate"
+        onClick={handleGeneratePassword}
       />
-
-      <label htmlFor="numberField">Números</label>
-      <input
-        type="checkbox"
-        id="numberField"
-        className="form__checkbox"
-        name={passwordOptions.NUMBERS}
-        defaultChecked={false}
-        onClick={handleSelectRules}
-      />
-
-      <label htmlFor="symbolsField">Símbolos</label>
-      <input
-        type="checkbox"
-        id="symbolsField"
-        className="form__checkbox"
-        name={passwordOptions.SYMBOLS}
-        defaultChecked={false}
-        onClick={handleSelectRules}
-      />
-
-      <button onClick={handleGeneratePassword}>Generate</button>
     </form>
   );
 };

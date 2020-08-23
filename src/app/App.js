@@ -1,12 +1,12 @@
 import React from "react";
+import MainComponent from "./components/core/MainComponent";
 import PasswordGenerator from "./components/PassGenerator/PasswordGenerator";
-import "./App.css";
 
 function App() {
   return (
-    <div className="App">
+    <MainComponent>
       <PasswordGenerator />
-    </div>
+    </MainComponent>
   );
 }
 
