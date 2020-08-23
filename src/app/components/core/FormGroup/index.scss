@@ -1,0 +1,60 @@
+@import "../../../../styles/utilities";
+
+.form-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: rem(40);
+
+  &__label {
+    position: absolute;
+    top: rem(18);
+    left: rem(20);
+    transition: all 0.3s ease;
+    color: #8a05be;
+    font-size: em(12);
+    line-height: lh(12px, 14px);
+    opacity: 0;
+  }
+
+  &__control {
+    display: block;
+    width: 100%;
+    height: rem(50);
+    padding-right: rem(20);
+    padding-left: rem(20);
+    transition: all 0.3s linear;
+    border: rem(1) solid #b7c2f8;
+    border-radius: rem(6);
+    background-color: #fff;
+    color: #324182;
+    font-family: Gilroy Medium;
+    font-size: em(16);
+    line-height: lh(16px, 19px);
+
+    &:focus {
+      outline: 0;
+    }
+
+    &--disabled {
+      background-color: #dedede;
+    }
+
+    &:not(:placeholder-shown) {
+      padding-top: rem(25);
+      padding-bottom: rem(12);
+    }
+
+    &:not(:placeholder-shown) + .form-group__label {
+      transform: translateY(-10px);
+      opacity: 1;
+    }
+
+    &::placeholder {
+      color: #8a05be;
+      font-family: Gilroy;
+      font-size: em(16);
+      font-weight: rem(500);
+      line-height: rem(24);
+    }
+  }
+}
